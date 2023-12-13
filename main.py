@@ -15,13 +15,13 @@ else:
         filename = os.fsdecode(file)
         p = "/Users/osnr/Dropbox/fb/messages/inbox/disneyland1_1hkorraw0w/photos/" + filename
 
-        db.append((p, imagehash.average_hash(Image.open(p))))
+        db.append((p, imagehash.phash(Image.open(p))))
     with open("db.pickle", "wb") as f:
         pickle.dump(db, f)
 
 if len(sys.argv) == 2:
     print(sys.argv[1])
-    imhash = imagehash.average_hash(Image.open(sys.argv[1]))
+    imhash = imagehash.phash(Image.open(sys.argv[1]))
     print(imhash)
 
     # sort db by closeness to hash
