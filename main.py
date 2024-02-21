@@ -20,12 +20,14 @@ else:
         pickle.dump(db, f)
 
 if len(sys.argv) == 2:
+    print("Search image:")
     print(sys.argv[1])
     imhash = imagehash.phash(Image.open(sys.argv[1]))
     print(imhash)
 
     # sort db by closeness to hash
     db_by_closeness = sorted(db, key=lambda im: im[1] - imhash)
+    print("Most similar:")
     print(db_by_closeness[0][0])
     print(db_by_closeness[1][0])
     print(db_by_closeness[2][0])
@@ -33,6 +35,7 @@ if len(sys.argv) == 2:
     print("Least similar:")
     print(db_by_closeness[-1][0])
     print(db_by_closeness[-2][0])
-    
+
     exit(0)
 
+# TODO: Emit a single image of half-width that we can look at.
